@@ -1,0 +1,41 @@
+helm install dev-redis-chart bitnami/redis /
+--namespace dev-redis --set global.redis.password=redispass,master.persistence.existingClaim=pvc-for-master-redis,/
+replica.replicaCount=2,replica.persistence.storageClass=local-storage,replica.persistence.size=2Gi
+
+
+
+
+
+helm install dev-redis-chart oci://registry-1.docker.io/bitnamicharts/redis --namespace dev-redis --set global.redis.password=redispass,master.persistence.existingClaim=pvc-for-master-redis, /
+helm install dev-redis-chart oci://registry-1.docker.io/bitnamicharts/redis --namespace dev-redis --set global.redis.password=redispass,master.persistence.existingClaim=pvc-for-master-redis, /
+ replica.replicaCount=2,replica.persistence.storageClass=local-storage,replica.persistence.size=2Gi replica.replicaCount=2,replica.persistence.storageClass=local-storage,replica.persistence.size=2Gi
+
+
+
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Secret
+metadata:
+  name: redis-server
+  namespace: redis-server
+  labels:
+    manual: "yes"
+type: Opaque
+stringData:
+  redis-password: 'qUwTt8g9it'
+EOF
+
+
+
+
+cat <<EOF | kubectl apply -f -
+apiVersion: v1
+kind: Secret
+metadata:
+  name: postgres
+  labels:
+    manual: "yes"
+type: Opaque
+stringData:
+  postgres-password: 'cG9zdGdyZXM='
+EOF

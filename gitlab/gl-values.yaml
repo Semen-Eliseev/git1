@@ -32,20 +32,20 @@ global:
   redis:
     auth:
       enabled: true
-      secret: gitlab-redis
+      secret: redis-server
       key: redis-password
-    host: gitlab-redis-master
+    host: redis-server
     port: 6379
 
   psql:
-    host: postgres-np
+    host: postgres
     port: 5432
     database: gitlab
-    username: artur
+    username: posgres
     password:
       useSecret: true
-      secret: postgres-secret
-      key: POSTGRES_PASSWORD
+      secret: postgres-secret-config
+      key: postgres-password
 
   ingress:
     configureCertmanager: false
@@ -55,9 +55,9 @@ global:
       enabled: false
 
   hosts:
-    domain: kryukov.local
+    domain: sogaz-clinic.local
     https: false
-    externalIP: 192.168.218.180
+   # externalIP: 192.168.0.245
 
   appConfig:
     # https://docs.gitlab.com/charts/advanced/external-object-storage/#lfs-artifacts-uploads-packages-external-diffs-terraform-state-dependency-proxy
@@ -89,21 +89,21 @@ global:
 
   ## https://docs.gitlab.com/charts/charts/globals#outgoing-email
   ## Outgoing email server settings
-  smtp:
-    enabled: true
-    tls: false
-    starttls_auto: false
-    openssl_verify_mode: 'none'
-    domain: "git.kryukov.local"
-    address: mail-relay
-    port: 25
-    authentication: "none"
-    password:
-      secret: 'fake-mail-password'
-      key: 'password'
-  email:
-    from: "noreply@gitlab.kryukov.local"
-    display_name: "GitLab kryukov.local"
+  #smtp:
+  #  enabled: true
+  #  tls: false
+  #  starttls_auto: false
+  #  openssl_verify_mode: 'none'
+  #  domain: "git.kryukov.local"
+  #  address: mail-relay
+  #  port: 25
+  #  authentication: "none"
+  #  password:
+  #    secret: 'fake-mail-password'
+  #    key: 'password'
+  #email:
+  #  from: "noreply@gitlab.kryukov.local"
+  #  display_name: "GitLab kryukov.local"
 
 # https://docs.gitlab.com/charts/advanced/external-object-storage/#backups
 gitlab:
@@ -115,5 +115,5 @@ gitlab:
           key: config
   gitaly:
     persistence:
-      size: 50Gi
+      size: 20Gi
       storageClass: "managed-nfs-storage"

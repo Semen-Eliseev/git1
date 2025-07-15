@@ -13,12 +13,12 @@ spec:
         app: postgres
     spec:
       volumes:
-      - name: postgres-pv-storage
+      - name: postgres-pv-storage141
         persistentVolumeClaim:
-          claimName: postgres-pv-claim
+          claimName: postgres-pv-claim141
       containers:
         - name: postgres
-          image: postgres:11
+          image: postgres:14
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 5432
@@ -32,4 +32,4 @@ spec:
               value: /var/lib/postgresql/data/pgdata
           volumeMounts:
           - mountPath: /var/lib/postgresql/data
-            name: postgres-pv-storage
+            name: postgres-pv-storage141

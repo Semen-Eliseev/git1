@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: postgres-pv-volume141
+  name: redis-pvc2
   labels:
     type: local
 spec:
@@ -11,4 +11,4 @@ spec:
   accessModes:
   - ReadWriteOnce
   hostPath:
-    path: "/mnt/postgresql141"
+    path: "/mnt/redispvc2"
